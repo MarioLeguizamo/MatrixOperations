@@ -62,26 +62,22 @@ class Matriz{
         [ 5.0, 3.0, 4.0, 2.0],
         [ 1.0, 1.0,-1.0, 1.0]
     ]
+
     
-    var matrizA:[[Double]]?
-    var matrizB:[[Double]]?
-    
-    
-/***************************** iniciarMatriz **********************************
+/********************************************iniciarMatriz******************************************
      
-Recibe el número de filas y el número de columnas, y regresaa una matriz de tamaño filas por
-columnas con todos los elementos igual a 0
+Recibe el número de filas y el número de columnas, y regresaa una matriz de tamaño filas por columnas con todos los elementos igual a 0.
 
-     - Ejemplo:
+    - Ejemplo:
 
-        función iniciarMatriz(2, 3) -> regresa [[0, 0, 0],[0, 0, 0]]
+       función iniciarMatriz(2, 3) -> regresa [[0, 0, 0],[0, 0, 0]]
 
             Entrada:   filas    = 2       Salida:   A = | 0, 0, 0|
                        columnas = 3                     | 0, 0, 0|
      
-     - Nota: Esta función es usada para inicializar una matriz de tamaño N x M
+    - Nota: Esta función es usada para inicializar una matriz de tamaño N x M.
      
-     - Código: */
+    - Código: */
     func iniciarMatriz(filas:Int, columnas:Int) -> ([[Double]]) {
         print("Crea una matriz ", filas, "x", columnas)
         let elemento:Double = 0
@@ -92,22 +88,27 @@ columnas con todos los elementos igual a 0
 
     
     
-/************************* agregarFilaOColumna*********************************
+/****************************************agregarFilaOColumna**************************************
 
-Recibe el número de filas y el número de columnas, y regresaa una matriz de tamaño filas por columnas
-con todos los elementos igual a 0
+Recibe una matriz y un booleano, si el booleano es igual a verdadero regresaa la matriz recibida con una fila agregada al final y si el booleano es igual a falso regresaa la matriz recibida con una columna agregada al final, el valor de todos los elementos agregados es igual a 0.
 
     - Ejemplo:
 
-       función agregarFilaOColumna(2, 3) -> regresa [[0, 0, 0],[0, 0, 0]]
+       función agregarFilaOColumna([[1, 2],[3,  4]], true) -> regresa [[1, 2],[3, 4],[0, 0]]
 
-                Entrada:   filas    = 2       Salida:   A = | 0, 0, 0|
-                           columnas = 3                     | 0, 0, 0|
-         
-    - Nota: Esta función es usada para inicializar una matriz de tamaño N x M
+                Entrada:   filaOColumna = VERDADERO      Salida:   A = | 1, 2|
+                           A = | 1, 2|                                 | 3, 4|
+                               | 3, 4|                                 | 0, 0|
+     
+     función agregarFilaOColumna([[1, 2],[3,  4]], falso) -> regresa [[1, 2, 0],[3, 4. 0]]
+     
+                Entrada:   filaOColumna = FALSO          Salida:
+                           A = | 1, 2|                             A = | 1, 2, 0|
+                               | 3, 4|                                 | 3, 4, 0|
          
     - Código: */
     func agregarFilaOColumna(matrizA:[[Double]], filaOColumna:Bool) -> ([[Double]]) {
+        print("Agregar fila o columna")
         let indice = 0
         var matrizNueva:[[Double]]?
         
@@ -129,22 +130,28 @@ con todos los elementos igual a 0
     
     
     
-/*************************eliminarFilaOColumna**********************************
+/****************************************eliminarFilaOColumna**************************************
          
-Recibe el número de filas y el número de columnas, y regresaa una matriz de tamaño filas por columnas
-con todos los elementos igual a 0
+Recibe una matriz y un booleano, si el booleano es igual a verdadero regresa la matriz recibida con la última fila eliminada y si el booleano es igual a falso regresaa la matriz recibida con la última columna eliminada,  el valor de todos los elementos eliminaddos es borrado.
 
      - Ejemplo:
 
-        función eliminarFilaOColumna(2, 3) -> regresa [[0, 0, 0],[0, 0, 0]]
+        función agregarFilaOColumna([[1, 2],[3,  4],[5, 6]], true) -> regresa [[1, 2],[3, 4]]
 
-            Entrada:   filas    = 2       Salida:   A = | 0, 0, 0|
-                       columnas = 3                     | 0, 0, 0|
-         
-    - Nota: Esta función es usada para inicializar una matriz de tamaño N x M
+                Entrada:   filaOColumna = VERDADERO      Salida:
+                           A = | 1, 2|                            A = | 1, 2|
+                               | 3, 4|                                | 3, 4|
+                               | 5, 6|
+     
+        función agregarFilaOColumna([[1, 2, 3],[4,  5, 6]], falso) -> regresa [[1, 2],[3, 4]]
+     
+                Entrada:   filaOColumna = FALSO          Salida:
+                           A = | 1, 2, 3|                         A = | 1, 2|
+                               | 4, 5, 6|                             | 3, 4|
          
     - Código: */
     func eliminarFilaOColumna(matrizA:[[Double]], filaOColumna:Bool) -> ([[Double]]) {
+        print("Eliminar fila o columna")
         let indice = 0
         var matrizNueva:[[Double]]?
         
@@ -166,26 +173,25 @@ con todos los elementos igual a 0
     
     
     
-/************************ comprobarMatrizEsCuadrada ****************************
+/************************************comprobarMatrizEsCuadrada************************************
      
-Recibe una matriz y regrea verdadero solo si el número de filas es igual número de
-columnas
+Recibe una matriz y regrea verdadero solo si el número de filas es igual número de columnas, de lo contario regresa falso.
 
      - Ejemplo:
      
-        función comprobarMatrizEsCuadrada([0,0],[0,0])       -> regresa VERDADERO
+        función comprobarMatrizEsCuadrada([0,0],[0,0]) -> regresa VERDADERO
+
+            Entrada:  A = | 0, 0|       Salida: VERDADERO
+                          | 0, 0|
+     
+     
         función comprobarMatrizEsCuadrada([0,0],[0,0],[0,0]) -> regresa FALSO
      
-
-            Entrada:  A = | 0, 0|   Salida: VERDADERO
-                          | 0, 0|
-     
-     
-            Entrada:  B = | 0, 0|   Salida: FALSO
+            Entrada:  B = | 0, 0|       Salida: FALSO
                           | 0, 0|
                           | 0, 0|
      
-    - Nota: Esta función es usada para calcular el determinante de una Matriz
+    - Nota: Esta función es usada para calcular el determinante de una Matriz.
      
     - Código: */
     func comprobarMatrizEsCuadrada(matrizA:[[Double]]) -> (Bool) {
@@ -202,21 +208,19 @@ columnas
     
     
     
-/************************ comprobarMatricesSonConformables **********************
+/********************************comprobarMatricesSonConformables********************************
      
-Recibe dos matrices y regresa verdadero solo si el número de filas de la matriz A es igual al número de
-columnas de la matriz B y el número de columnas de la matriz A es igual aj número de filas de la matriz B
+Recibe dos matrices y regresa verdadero solo si el número de filas de la matriz A es igual al número de columnas de la matriz B y el número de columnas de la matriz A es igual aj número de filas de la matriz B, de lo contario regresa falso.
      
     - Ejemplo:
      
-    función comprobarMatricesSonConformables([0,0],[0,0],[0,0], [0,0,0],[0,0,0])
-     -> regresa VERDADERO
+       función comprobarMatricesSonConformables([0,0],[0,0],[0,0], [0,0,0],[0,0,0]) -> regresa VERDADERO
 
             Entrada:   A = | 0, 0| B = | 0, 0, 0|   Salida: VERDADERO
                            | 0, 0|     | 0, 0, 0|
                            | 0, 0|
      
-    - Nota: Esta función es usada para obtener el producto de dos matrices
+    - Nota: Esta función es usada para obtener el producto de dos matrices.
      
     - Código: */
     func comprobarMatricesSonConformables(matrizA:[[Double]], matrizB:[[Double]]) -> (Bool) {
@@ -233,9 +237,9 @@ columnas de la matriz B y el número de columnas de la matriz A es igual aj núm
     
     
     
-/**************************** regresarTamanosMatriz *****************************
+/****************************************regresarTamanosMatriz*************************************
      
-Recibe una matriz y regresa de mayor a menor el numero de filas y columnas de la matriz
+Recibe una matriz y regresa de mayor a menor el numero de filas y columnas de la matriz.
      
      - Ejemplo:
      
@@ -246,9 +250,11 @@ Recibe una matriz y regresa de mayor a menor el numero de filas y columnas de la
                            | 0, 0|
                            | 0, 0|
      
+        función regresarTamanosMatriz([0,0,0],[0,0,0]) -> regresa 3,2
      
             Entrada:   B = | 0, 0, 0|  Salida: 3,2
                            | 0, 0, 0|
+     
     - Código: */
     func regresarTamanosMatriz(matrizA:[[Double]]) -> (Int, Int) {
         print("¿Cual indice es mayor?")
@@ -270,22 +276,20 @@ Recibe una matriz y regresa de mayor a menor el numero de filas y columnas de la
     
     
     
-/******************** comprobarTamanosMatricesSonIguales ************************
+/********************************comprobarTamanosMatricesSonIguales*******************************
      
-Recibe dos matrices y regresa verdadero solo si el número de filas de la matriz A es igual al número de
-columnas de la matriz B y el número de columnas de la matriz A es igual aj número de filas de la matriz B
+Recibe dos matrices y regresa verdadero solo si el número de filas de la matriz A es igual al número de columnas de la matriz B y el número de columnas de la matriz A es igual aj número de filas de la matriz B, de lo contario regresa falso.
      
     - Ejemplo:
      
-       función comprobarTamanosMatricesSonIguales([0,0],[0,0], [0,0],[0,0])
-       -> regresa VERDADERO
+       función comprobarTamanosMatricesSonIguales([0,0],[0,0], [0,0],[0,0]) -> regresa VERDADERO
      
      
             Entrada:    A = | 0, 0|     B = | 0, 0|    Salida: VERDADERO
                             | 0, 0|         | 0, 0|
      
      
-    - Nota: Esta función es usada para saber si dos matrices se pueden sumar o restar
+    - Nota: Esta función es usada para saber si dos matrices se pueden sumar o restar.
      
     - Código: */
     func comprobarTamanosMatricesSonIguales(matrizA:[[Double]], matrizB:[[Double]]) -> (Bool) {
@@ -302,16 +306,21 @@ columnas de la matriz B y el número de columnas de la matriz A es igual aj núm
     
     
     
-/************************* convertirMatrizACadena ****************************
+/****************************************convertirMatrizACadena************************************
+     CORREGIR DOCUMENTACION
+Recibe una matriz e imprime elemento por elemento.
      
-Recibe una matriz e imprime elemento por elemento
+     - Ejemplo:
+       
+        función iconvertirMatrizACadena([1,2],[3,4],[5,6])
      
-     - Ejemplo:                                                                                                 A:[0][0] = 1
-                                                        A:[0][1] = 2
-            función imprimirMatriz([1,2],[3,4],[5,6])                              A:[1][0] = 3
-                                                        A:[1][1] = 4
-                                                        A:[2][0] = 5
-                                                        A:[2][1] = 6
+                        A:[0][0] = 1
+                        A:[0][1] = 2
+                        A:[1][0] = 3
+                        A:[1][1] = 4
+                        A:[2][0] = 5
+                        A:[2][1] = 6
+     
     - Código: */
     func convertirMatrizACadena(matrizA:[[Double]]) -> (String) {
         var matrizCadena: String = ""
@@ -339,22 +348,26 @@ Recibe una matriz e imprime elemento por elemento
             }
         }
         
-        
         return matrizCadena
     }
     
     
     
-/******************************** imprimirMatriz ********************************
-         
-Recibe una matriz e imprime elemento por elemento
-         
-    - Ejemplo:                                                                                                          A:[0][0] = 1
-                                                            A:[0][1] = 2
-            función imprimirMatriz([1,2],[3,4],[5,6])                                       A:[1][0] = 3
-                                                            A:[1][1] = 4
-                                                            A:[2][0] = 5
-                                                            A:[2][1] = 6
+/********************************************imprimirMatriz*****************************************
+
+Recibe una matriz e imprime elemento por elemento.
+              
+     - Ejemplo:
+                
+        función imprimirMatriz([1,2],[3,4],[5,6])
+              
+                                 A:[0][0] = 1
+                                 A:[0][1] = 2
+                                 A:[1][0] = 3
+                                 A:[1][1] = 4
+                                 A:[2][0] = 5
+                                 A:[2][1] = 6
+              
     - Código: */
     func imprimirMatriz(matrizA:[[Double]]) -> () {
         print("Matriz:")
@@ -369,9 +382,9 @@ Recibe una matriz e imprime elemento por elemento
     
     
     
-/******************************** sumarMatrices********************************
+/********************************************sumarMatrices****************************************
      
-Recibe dos matrices y regresa una matriz C, que es igual a la matriz A mas la matriz B
+Recibe dos matrices y regresa una matriz C, que es igual a la matriz A mas la matriz B.
      
     - Ejemplo:
      
@@ -382,7 +395,7 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A mas la ma
                            | 3, 4|   | 3, 3|     | 6, 7|
      
      
-    Nota: Esta función usa el método "comprobarTamanosMatricesSonIguales"
+    Nota: Esta función usa el método "comprobarTamanosMatricesSonIguales".
      
     Código: */
     func sumarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]){
@@ -402,9 +415,9 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A mas la ma
     
     
     
-/******************************** restarMatrices ********************************
+/********************************************restarMatrices*****************************************
      
-Recibe dos matrices y regresa una matriz C, que es igual a la matriz A menos la matriz B
+Recibe dos matrices y regresa una matriz C, que es igual a la matriz A menos la matriz B.
      
      - Ejemplo:
      
@@ -415,7 +428,7 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A menos la 
                             | 3, 4|   | 3, 3|     | 0, 1|
      
      
-    - Nota: Esta función usa el método "comprobarTamanosMatricesSonIguales"
+    - Nota: Esta función usa el método "comprobarTamanosMatricesSonIguales".
      
     - Código: */
     func restarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]) {
@@ -435,15 +448,13 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A menos la 
     
     
     
-/*****************************multiplicarMatrices ********************************
+/***************************************multiplicarMatrices*****************************************
      
-Recibe dos matrices y regresa una matriz C en la que cada uno de sus elementos es igual a la suma de
-multiplicar los elementos de la fila de la matriz A por los elementos de la columna de la matriz B
+Recibe dos matrices y regresa una matriz C en la que cada uno de sus elementos es igual a la suma de multiplicar los elementos de la fila de la matriz A por los elementos de la columna de la matriz B.
      
      - Ejemplo:
      
-         función multiplicarMatrices([1,2],[3,4],[5,6], [1,2,3],[4,5,6])
-            -> regresa [9,12,15],[19,26,33],[29,40,51]
+        función multiplicarMatrices([1,2],[3,4],[5,6], [1,2,3],[4,5,6]) -> regresa [9,12,15],[19,26,33],[29,40,51]
      
             [A]3x2 * [B]2x3 = [C]3x3
                                                1·1 + 2·4 = 9
@@ -457,8 +468,7 @@ multiplicar los elementos de la fila de la matriz A por los elementos de la colu
                                                3·3 + 4·6 = 51
      
      
-            función multiplicarMatrices([1,2,3],[4,5,6], [1,2],[3,4],[5,6])
-            -> regresa [28,22],[49,64]
+        función multiplicarMatrices([1,2,3],[4,5,6], [1,2],[3,4],[5,6]) -> regresa [28,22],[49,64]
      
             [B]2x3 * [A]3x2 = [C]2x2
                                               1·1 + 2·3 + 3·5 = 22
@@ -466,7 +476,7 @@ multiplicar los elementos de la fila de la matriz A por los elementos de la colu
             B * A  =  | 4, 5, 6| * | 3, 4|  = 4·1 + 5·3 + 6·5 = 49  =  |49,64|
                                    | 5, 6|    4·2 + 5·4 + 6·6 = 64
      
-    - Nota: Esta función usa el método "comprobarMatricesSonConformables"
+    - Nota: Esta función usa el método "comprobarMatricesSonConformables".
      
     - Código: */
     func multiplicarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]) {
@@ -489,14 +499,13 @@ multiplicar los elementos de la fila de la matriz A por los elementos de la colu
     
     
     
-/******************************** multiplicarEscalar *****************************
+/****************************************multiplicarEscalar******************************************
      
-Recibe una matriz y un número, y regresa una matriz C en la que cada uno de sus elementos es igual a
-multiplicar el número por el elemento de la matriz
+Recibe una matriz y un número, y regresa una matriz C en la que cada uno de sus elementos es igual a multiplicar el número por el elemento de la matriz.
      
-      Ejemplo:
+    - Ejemplo:
      
-        función multiplicarEscalar([1,2],[3,4], 2) -> regresa [2,4],[6,8]
+       función multiplicarEscalar([1,2],[3,4], 2) -> regresa [2,4],[6,8]
      
                     a * A  =  2 * | 1, 2|  =  | 2, 4|
                                   | 3, 4|     | 6, 8|
@@ -517,24 +526,22 @@ multiplicar el número por el elemento de la matriz
     
     
     
-/**************************** eliminarFilaColumnaMatriz **************************
+/************************************eliminarFilaColumnaMatriz**************************************
      
-Recibe una matriz, el número de una fila y el número de una columna, y regresa la matriz con la fila y la
-columna borradas
+Recibe una matriz, el número de una fila y el número de una columna, y regresa la matriz con la fila y la columna eliminadas.
      
-     - Ejemplo:
+    – Ejemplo:
      
-            función eliminarFilaColumnaMatriz([1,2,3],[4,5,6],[7,8,9], 0, 0)
-            -> regresa [5,6],[8,9]
+       función eliminarFilaColumnaMatriz([1,2,3],[4,5,6],[7,8,9], 0, 0) -> regresa [5,6],[8,9]
      
             Entrada:   A = | 1, 2, 3|     Salida:   A = | 5, 6|
                            | 4, 5, 6|                   | 8, 9|
                            | 7, 8, 9|
      
      
-    - Nota: Esta función es usada para calcular el determinante de una matriz
+    – Nota: Esta función es usada para calcular el determinante de una matriz y para calcular la matriz adjunta.
      
-      Código: */
+    –  Código: */
     func eliminarFilaColumnaMatriz(matrizA:[[Double]], fila:Int, columna:Int) -> ([[Double]]) {
         print("Reducir Matriz eliminando la fila ", fila, " y laa columna ", columna)
         let indice = 0
@@ -561,14 +568,13 @@ columna borradas
     
     
     
-/**************************** calcularDeterminanteMatriz **************************
+/************************************calcularDeterminanteMatriz**************************************
      
-Recibe una matriz cuadrada, y calcula el determinante de la matriz usando el Teorema de Laplace
+Recibe una matriz cuadrada, y calcula el determinante de la matriz usando el Teorema de Laplace.
      
      - Ejemplo:
      
-        función calcularDeterminanteMatriz([1,-1,2],[-2,0,4],[0,-2,7])
-        -> regresa 2
+        función calcularDeterminanteMatriz([1,-1,2],[-2,0,4],[0,-2,7]) -> regresa 2
      
                  | 1,-1, 2|                 _n_
             A =  |-2, 0, 4|      det(A)  =  \   (-1)^j+1 * a1j * |A1j|
@@ -593,7 +599,7 @@ Recibe una matriz cuadrada, y calcula el determinante de la matriz usando el Teo
                         det(A)  =  8 - 14 + 8  =  2
      
     - Nota: Esta función usa la misma ("calcularDeterminanteMatriz"), de manera recursiva y
-           el método "eliminarFilaColumnaMatriz"
+           el método "eliminarFilaColumnaMatriz".
      
     - Código: */
     func calcularDeterminanteMatriz(matrizA:[[Double]]) -> (Double) {
@@ -620,14 +626,13 @@ Recibe una matriz cuadrada, y calcula el determinante de la matriz usando el Teo
     
     
     
-/************************* calcularMatrizTranspuesta ******************************
+/************************************calcularMatrizTranspuesta***************************************
      
-Recibe una matriz y regresa la matriz con las filas y las columnas intercambiadas
+Recibe una matriz y regresa la matriz con las filas y las columnas intercambiadas.
      
     - Ejemplo:
      
-       función transponerMatriz([1,-1,2],[-2,0,4],[0,-2,7])
-       - > regresa 2
+       función calcularMatrizTranspuesta([1,-1,2],[-2,0,4],[0,-2,7]) -> regresa [ 1,-2, 0][-1, 0, -2][ 2, 4, 7]
      
                         | 1,-1, 2|                        | 1,-2, 0|
         Entrada:    A = |-2, 0, 4|      Salida:     A^T = |-1, 0,-2|
@@ -650,14 +655,13 @@ Recibe una matriz y regresa la matriz con las filas y las columnas intercambiada
     
     
     
-/**************************** calcularMatrizAdjunta ******************************
+/****************************************calcularMatrizAdjunta**************************************
      
-Recibe una matriz y regresa la matriz adjunta que es igual a la matriz de los elementos adjuntos
+Recibe una matriz y regresa la matriz adjunta que es igual a la matriz de los elementos adjuntos.
      
      - Ejemplo:
      
-        función calcularMatrizAdjunta([1,-1,2],[-2,0,4],[0,-2,7])
-        -> regresa [8,3,-4,[14,7,-8],[4,2,-2]
+        función calcularMatrizAdjunta([1,-1,2],[-2,0,4],[0,-2,7]) -> regresa [8,3,-4,[14,7,-8],[4,2,-2]
      
                   | 1,-2, 0|
             A^T = |-1, 0,-2|          adij  =  (-1)^i+j * |Aij|
@@ -694,7 +698,8 @@ Recibe una matriz y regresa la matriz adjunta que es igual a la matriz de los el
                         Adj(A) = |14, 7,-8|
                                  | 4, 2,-2|
      
-    - Nota: Esta función usa los metodos "calcularDeterminanteMatriz" y "eliminarFilaColumnaMatriz"
+     
+    - Nota: Esta función usa los metodos "calcularDeterminanteMatriz" y "eliminarFilaColumnaMatriz".
      
     - Código: */
     func calcularMatrizAdjunta(matrizA:[[Double]]) -> ([[Double]]) {
@@ -712,13 +717,13 @@ Recibe una matriz y regresa la matriz adjunta que es igual a la matriz de los el
 
     
     
-/**************************** calcularMatrizInversa ******************************
+/****************************************calcularMatrizInversa***************************************
      
-Recibe una matriz y regresa su inversa
+Recibe una matriz y regresa su inversa.
      
     - Ejemplo:
      
-       función calcularDeterminanteMatriz([1,-1,2],[-2,0,4],[0,-2,7])
+       función calcularMatrizInversa([1,-1,2],[-2,0,4],[0,-2,7])
        -> regresa [4,1.5,-2][7,3.5,-4][2,1,-1]
      
                  | 1,-1, 2|
@@ -736,7 +741,7 @@ Recibe una matriz y regresa su inversa
     - Nota: Para calcular la matriz inversa se tiene que obtener la matriz adjunta de la matriz
            transpuesta y dividirla entre el determinante, por lo que esta función hace uso de los
            métodos "calcularDeterminanteMatriz", "transponerMatriz", "calcularMatrizAdjunta" y
-           "multiplicarEscalar"
+           "multiplicarEscalar".
      
     - Código: */
     func calcularMatrizInversa(matrizA:[[Double]]) -> ([[Double]]) {
@@ -757,9 +762,9 @@ Recibe una matriz y regresa su inversa
 
     
     
-/******************************** rangoMatriz **********************************
+/********************************************rangoMatriz*******************************************
      
-Recibe una matriz y regresa un numero que es igual al numero de filas independientes de la matriz
+Recibe una matriz y regresa un numero que es igual al numero de filas independientes de la matriz.
      
     - Ejemplo:
      
@@ -779,9 +784,9 @@ Recibe una matriz y regresa un numero que es igual al numero de filas independie
     
     
     
-/********************************trazaMatriz ************************************
+/********************************************trazaMatriz********************************************
      
-Recibe una matriz cuadrada y regresa un vector con los elementos de la diagonal principal
+Recibe una matriz cuadrada y regresa un vector con los elementos de la diagonal principal.
      
      - Ejemplo:
      
@@ -810,10 +815,9 @@ Recibe una matriz cuadrada y regresa un vector con los elementos de la diagonal 
     
     
     
-/**************************** multiplicarFilaPorEscalar ****************************
+/************************************multiplicarFilaPorEscalar***************************************
  
-Recibe una matriz, un renglon y un escalar, y regresa una matriz nueva en la que los elementos del renglón
-especificado son el resultado de multiplicar sus elementos con el escalar
+Recibe una matriz, un renglon y un escalar, y regresa una matriz nueva en la que los elementos del renglón especificado son el resultado de multiplicar sus elementos con el escalar.
      
     - Ejemplo:
      
@@ -829,6 +833,8 @@ especificado son el resultado de multiplicar sus elementos con el escalar
             A' =  |12,15,18|
                   | 7, 8, 9|
      
+    - Nota: Esta función es usada para calcular una matriz similar en el que le primer elemento sea igual a 1.
+     
     - Código: */
     func multiplicarFilaPorEscalar(matrizA:[[Double]], fila:Int, escalar:Double) -> ([[Double]]) {
         print("Multiplicar: R", fila, "*", escalar, " -> R", fila)
@@ -843,18 +849,19 @@ especificado son el resultado de multiplicar sus elementos con el escalar
     
     
     
-/**************************** intercambiarFilas **********************************
+/****************************************intercambiarFilas******************************************
      
-Recibe una matriz, dos renglones, y regresa una matriz nueva con los renglones intercambiados
+Recibe una matriz, dos renglones, y regresa una matriz nueva con los renglones intercambiados.
          
     - Ejemplo:
          
-       función intercambiarFilas([1,2,3],[4,5,6],[7,8,9], 1, 2)
-       -> regresa [1,2,3],[7,8,9],[4,5,6]
+       función intercambiarFilas([1,2,3],[4,5,6],[7,8,9], 1, 2) -> regresa [1,2,3],[7,8,9],[4,5,6]
          
                       | 1, 2, 3|                | 1, 2, 3|
                 A  =  | 4, 5, 6|    ->    A' =  | 7, 8, 9|
                       | 7, 8, 9|                | 4, 5, 6|
+     
+    - Nota: Esta función es usada para calcular una matriz similar en el que le primer elemento sea igual a 1.
          
     - Código: */
     func intercambiarFilas(matrizA:[[Double]], filaA:Int, filaB:Int) -> ([[Double]]) {
@@ -871,25 +878,26 @@ Recibe una matriz, dos renglones, y regresa una matriz nueva con los renglones i
     
     
     
-/**************************** intercambiarColumnas ******************************
+/************************************intercambiarColumnas******************************************
      
-Recibe una matriz, dos columnas, y regresa una matriz nueva con las columnas intercambiados
+Recibe una matriz, dos columnas, y regresa una matriz nueva con las columnas intercambiados.
              
     - Ejemplo:
              
-       función intercambiarFilas([1,2,3],[4,5,6],[7,8,9], 0, 1)
-       -> regresa [2,1,3],[5,4,6],[8,7,9]
+       función intercambiarFilas([1,2,3],[4,5,6],[7,8,9], 0, 1) -> regresa [2,1,3],[5,4,6],[8,7,9]
              
                           | 1, 2, 3|                | 2, 1, 3|
                     A  =  | 4, 5, 6|    ->    A' =  | 5, 4, 6|
                           | 7, 8, 9|                | 8, 7, 9|
+     
+    - Nota: Esta función es usada para calcular una matriz similar en el que le primer elemento sea igual a 1.
              
     - Código: */
     func intercambiarColumnas(matrizA:[[Double]], columnaA:Int, columnaB:Int) -> ([[Double]]) {
         print("Intercambiar: C", columnaA, " con C", columnaB)
         var matrizNueva = matrizA
                 
-        for i in 0..<matrizA.count {
+        for i in 0..<matrizA[0].count {
             matrizNueva[i][columnaA] = matrizA[i][columnaB]
             matrizNueva[i][columnaB] = matrizA[i][columnaA]
         }
@@ -899,65 +907,26 @@ Recibe una matriz, dos columnas, y regresa una matriz nueva con las columnas int
     
     
     
-/************************ calcularTranformacionElementalMatriz **********************
-     
-Recibe una matriz, una fila de inicio, una fila final y un escalar, multiplica el escalar por la fila inicial y la
-suma a la fila final para sustituirla en la fila final
-     
-     - Ejemplo:
-     
-        función calcularTranformacionElementalMatriz([1,-1,2],[-2,0,4],[0,-2,7], 1, 2, 2)
-        -> regresa [1,-2,0][0,-2,8][2,4,7]
-     
-                | 1,-1, 2|
-            A = |-2, 0, 4|             2*R1 + R2 ->  R2
-                | 0,-2, 7|
-     
-                                    =  2*| 1,-1, 2|  +  | 0,-2, 8|
-     
-                                    =    | 2,-2, 4|  +  | 0,-2, 8|
-     
-                                    =    | 0,-2, 8|
-     
-                 | 1,-1, 2|
-            A' = | 0,-2, 8|
-                 | 0,-2, 7|
-     
-     - Nota: Está función  es usada para el metodo "eliminaciónGaussJordan"
-     
-     - Código: */
-    func calcularTranformacionElementalMatriz(matrizA:[[Double]], filaIni:Int, filaFin:Int, escalar:Double) -> ([[Double]]) {
-        print("Transformar: R", filaIni, "*", escalar, "+ R", filaFin, " =  R", filaFin)
-        var matrizResultante = matrizA
-        
-        for i in 0..<matrizA.count {
-            matrizResultante[filaFin][i] = matrizA[filaFin][i] + (matrizA[filaIni][i] * escalar)
-        }
-        
-        return matrizResultante
-    }
-    
-    
-    
-/****************************obtenerIndicesDeElemento****************************
+/****************************************obtenerIndicesDeElemento**********************************
 
-Recibe una matriz y un elemento, y regresa el primer indice en donde encuentra el elemento buscado si no regresa (-1,-1)
-                    
-     - Ejemplo:
-                 
-        función obtenerIndicesUnidad([1,2,3],[4,5,6],[7,8,9], 4)
-        -> regresa : 1
-                 
-                              | 1, 2, 3|
-                        A  =  | 4, 5, 6|   ->   (1,0)
-                              | 7, 8, 9|
-                 
+Recibe una matriz y un numero, y regresa el primer indice en donde encuentra el numero buscado, de lo contrario regresa (-1,-1).
+                        
+    - Ejemplo:
+                     
+       función obtenerIndicesDeElemento([1,2,3],[4,5,6],[7,8,9], 4) -> regresa : ( 1, 0)
+                     
+                                  | 1, 2, 3|
+                            A  =  | 4, 5, 6|   ->   (1,0)
+                                  | 7, 8, 9|
+    
+    - Nota: Esta función es usada para calcular una matriz similar en el que le primer elemento sea igual a 1.
+     
     - Código: */
     func obtenerIndicesDeElemento(matrizA:[[Double]], elemento:Double, fila:Int, columna:Int) -> (Int, Int) {
         print("Encontrar indices del elemento ", elemento)
         var indiceFila = -1
         var indiceColumna = -1
-                
+                    
         for j in columna..<matrizA[0].count {
             for i in fila..<matrizA.count {
                 if indiceFila == -1 {
@@ -968,31 +937,29 @@ Recibe una matriz y un elemento, y regresa el primer indice en donde encuentra e
                 }
             }
         }
-                    
+                        
         return (indiceFila, indiceColumna)
     }
     
     
     
-/****************************obtenerElementoDeIndice****************************
-
-Recibe una matriz  un indice, y regresa el elemento que se encuentra en la fila del indice y la primera
-columna
-                        
+/************************************hacerPrimerElementoUno***************************************
+     CORREGIE DOCUMENTACION
+Recibe una matriz  un indice, y regresa el elemento que se encuentra en la fila del indice y la primera columna
+                            
     - Ejemplo:
-                     
-        función obtenerIndicesUnidad([1,2,3],[4,5,6],[7,8,9], 1)
-        -> regresa : 4
-                     
-                                  | 1, 2, 3|
-                            A  =  | 4, 5, 6|   ->   4
-                                  | 7, 8, 9|
-                     
+                         
+       función hacerPrimerElementoUno([1,2,3],[4,5,6],[7,8,9], 1) -> regresa : 4
+                         
+                                      | 1, 2, 3|
+                                A  =  | 4, 5, 6|   ->   4
+                                      | 7, 8, 9|
+                         
     - Código:*/
     func hacerPrimerElementoUno(matrizA:[[Double]], fila:Int, columna:Int) -> [[Double]] {
         var matrizNueva = matrizA
         let indicesDeSiguienteUno = obtenerIndicesDeElemento(matrizA: matrizNueva, elemento: 1, fila: fila, columna: columna)
-        
+            
         // Si existe algun elemento siguiente de la martriz igual a 1
         if indicesDeSiguienteUno.0 != -1 {
             // Intercambiar filas y columnas para que el 1 este en la posicion (0,0)
@@ -1011,23 +978,60 @@ columna
             }
             // Dividir la primera fila entre el primer elemento
             matrizNueva = multiplicarFilaPorEscalar(matrizA: matrizNueva, fila: fila, escalar: 1/matrizNueva[fila][columna])
+                
+        }
             
+        return matrizNueva
+}
+    
+    
+    
+/********************************calcularTranformacionElementalMatriz********************************
+     
+Recibe una matriz, una fila de inicio, una fila final y un escalar, multiplica el escalar por la fila inicial y la
+suma a la fila final para sustituirla en la fila final
+     
+    - Ejemplo:
+     
+       función calcularTranformacionElementalMatriz([1,-1,2],[-2,0,4],[0,-2,7], 1, 2, 2) -> regresa [1,-2,0][0,-2,8][2,4,7]
+     
+                | 1,-1, 2|
+            A = |-2, 0, 4|             2*R1 + R2 ->  R2
+                | 0,-2, 7|
+     
+                                    =  2*| 1,-1, 2|  +  | 0,-2, 8|
+     
+                                    =    | 2,-2, 4|  +  | 0,-2, 8|
+     
+                                    =    | 0,-2, 8|
+     
+                 | 1,-1, 2|
+            A' = | 0,-2, 8|
+                 | 0,-2, 7|
+     
+    - Nota: Está función  es usada para calcular una matriz similar con el metodo de eliminación de GaussJordan.
+     
+    - Código: */
+    func calcularTranformacionElementalMatriz(matrizA:[[Double]], filaIni:Int, filaFin:Int, escalar:Double) -> ([[Double]]) {
+        print("Transformar: R", filaIni, "*", escalar, "+ R", filaFin, " =  R", filaFin)
+        var matrizResultante = matrizA
+        
+        for i in 0..<matrizA.count {
+            matrizResultante[filaFin][i] = matrizA[filaFin][i] + (matrizA[filaIni][i] * escalar)
         }
         
-        return matrizNueva
+        return matrizResultante
     }
     
     
     
-/****************************eliminacionGaussJordan*****************************
-     
-Recibe una matriz, y regresa una matriz similar a la que se le aplicaron transformaciones elementales para
-que los elementos de la matriz triangular inferior sean iguales a 0
+/****************************************eliminacionGaussJordan************************************
+     CORREGIR DOCUMENTACION EJEMPLO Y NOTA
+Recibe una matriz, y regresa una matriz similar a la que se le aplicaron transformaciones elementales para que los elementos de la matriz triangular inferior sean iguales a 0.
                      
     - Ejemplo:
                   
-       función eliminacionGaussJordan([1,2,3],[4,5,6],[7,8,9])
-       -> regresa : [1,2,3],[4,5,6],[7,8,9]
+       función eliminacionGaussJordan([1,2,3],[4,5,6],[7,8,9]) -> regresa : [1,2,3],[4,5,6],[7,8,9]
                   
                                | 1, 2, 3|
                          A  =  | 4, 5, 6|   ->   0
@@ -1039,7 +1043,7 @@ que los elementos de la matriz triangular inferior sean iguales a 0
         var matrizNueva = matrizA
         
         for i in 0..<matrizNueva.count {
-        // Si el primer elemento de la matriz es diferente de 1
+            // Si el primer elemento de la matriz es diferente de 1
             if matrizNueva[i][i] != 1 {
                 matrizNueva = hacerPrimerElementoUno(matrizA: matrizNueva, fila: i,columna: i)
             }
@@ -1056,6 +1060,7 @@ que los elementos de la matriz triangular inferior sean iguales a 0
         return matrizNueva
     }
     
+    //func calcularMatrizConjugada([[Double]]) -> ([[Double]])
     //func reglaCramer([[Double]]) -> ([[Double]])
     //func calcularMatrizLU([[Double]]) -> ([[Double]])
 }
