@@ -399,11 +399,12 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A mas la ma
     - Código: */
     func sumarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]){
         print("Suma A + B")
-        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
+        let indice = 0
+        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA[indice].count)
         
         if comprobarTamanosMatricesSonIguales(matrizA: matrizA, matrizB: matrizB) == true {
             for i in 0..<matrizA.count {
-                for j in 0..<matrizA.count {
+                for j in 0..<matrizA[indice].count {
                     matrizC[i][j] = matrizA[i][j] + matrizB[i][j]
                 }
             }
@@ -432,11 +433,12 @@ Recibe dos matrices y regresa una matriz C, que es igual a la matriz A menos la 
     - Código: */
     func restarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]) {
         print("Resta A - B")
-        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
+        let indice = 0
+        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA[indice].count)
         
         if comprobarTamanosMatricesSonIguales(matrizA: matrizA, matrizB: matrizB) == true {
             for i in 0..<matrizA.count {
-                for j in 0..<matrizA.count {
+                for j in 0..<matrizA[indice].count {
                     matrizC[i][j] = matrizA[i][j] - matrizB[i][j]
                 }
             }
@@ -480,8 +482,8 @@ Recibe dos matrices y regresa una matriz C en la que cada uno de sus elementos e
     - Código: */
     func multiplicarMatrices(matrizA:[[Double]], matrizB:[[Double]]) -> ([[Double]]) {
         print("Multiplica A * B")
-        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
         let indice = 0
+        var matrizC = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
         
         if comprobarMatricesSonConformables(matrizA: matrizA, matrizB: matrizB) == true {
             for i in 0..<matrizA[indice].count {
@@ -659,17 +661,21 @@ Recibe una matriz cuadrada, y calcula el determinante de la matriz usando el Teo
         var determinante:Double = 0
         let indice = 0
         
-        if(matrizA.count == 2) {
-            return Double((matrizA[0][0] * matrizA[1][1])  -  (matrizA[1][0] * matrizA[0][1]))
+        if comprobarMatrizEsCuadrada(matrizA: matrizA) {
+            if(matrizA.count == 2) {
+                return Double((matrizA[0][0] * matrizA[1][1])  -  (matrizA[1][0] * matrizA[0][1]))
+            }
+            else {
+                for i in 0..<matrizA.count {
+                    matrizMenor = eliminarFilaColumnaMatriz(matrizA: matrizA, fila: indice, columna: i)
+                    determinanteAux = Double(pow(Double(-1), Double(i))) * Double(matrizA[indice][i]) * calcularDeterminanteMatriz(matrizA:matrizMenor)
+                    //determinanteAux = Double(pow(Double(-1), Double(i))) * Double(matrizA[indice][i]) * calcularDeterminanteMatriz(matrizA:eliminarFilaColumnaMatriz(matrizA: matrizA, fila: indice, columna: i))
+                    determinante += determinanteAux
+                }
+                return determinante
+            }
         }
         else {
-            for i in 0..<matrizA.count {
-                matrizMenor = eliminarFilaColumnaMatriz(matrizA: matrizA, fila: indice, columna: i)
-                determinanteAux = Double(pow(Double(-1), Double(i))) * Double(matrizA[indice][i]) * calcularDeterminanteMatriz(matrizA:matrizMenor)
-                //determinanteAux = Double(pow(Double(-1), Double(i))) * Double(matrizA[indice][i]) * calcularDeterminanteMatriz(matrizA:eliminarFilaColumnaMatriz(matrizA: matrizA, fila: indice, columna: i))
-                determinante += determinanteAux
-            }
-            
             return determinante
         }
     }
@@ -756,9 +762,11 @@ Recibe una matriz y regresa la matriz adjunta que es igual a la matriz de los el
         print("Matriz adjunta Adj(A)")
         var matrizAdjunta = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
         
-        for i in 0..<matrizA.count {
-            for j in 0..<matrizA.count {
-                matrizAdjunta[i][j] = pow(Double(-1), Double(i+j)) * calcularDeterminanteMatriz(matrizA:eliminarFilaColumnaMatriz(matrizA: matrizA, fila: i, columna: j))
+        if comprobarMatrizEsCuadrada(matrizA: matrizA) {
+            for i in 0..<matrizA.count {
+                for j in 0..<matrizA.count {
+                    matrizAdjunta[i][j] = pow(Double(-1), Double(i+j)) * calcularDeterminanteMatriz(matrizA:eliminarFilaColumnaMatriz(matrizA: matrizA, fila: i, columna: j))
+                }
             }
         }
         
@@ -801,11 +809,13 @@ Recibe una matriz y regresa su inversa.
         var matrizAdjunta = iniciarMatriz(filas: matrizA.count, columnas: matrizA.count)
         var determinante:Double = 0
         
-        matrizTranspuesta = calcularMatrizTranspuesta(matrizA: matrizA)
-        matrizAdjunta = calcularMatrizAdjunta(matrizA: matrizTranspuesta)
-        determinante = calcularDeterminanteMatriz(matrizA: matrizA)
-        matrizInversa = multiplicarEscalar(matrizA: matrizAdjunta, escalar: 1/determinante)
-        //matrizInversa = multiplicarEscalar(matrizA: calcularMatrizAdjunta(matrizA: transponerMatriz(matrizA: matrizA)), escalar: 1/calcularDeterminanteMatriz(matrizA: matrizA))
+        if comprobarMatrizEsCuadrada(matrizA: matrizA) {
+            matrizTranspuesta = calcularMatrizTranspuesta(matrizA: matrizA)
+            matrizAdjunta = calcularMatrizAdjunta(matrizA: matrizTranspuesta)
+            determinante = calcularDeterminanteMatriz(matrizA: matrizA)
+            matrizInversa = multiplicarEscalar(matrizA: matrizAdjunta, escalar: 1/determinante)
+            //matrizInversa = multiplicarEscalar(matrizA: calcularMatrizAdjunta(matrizA: transponerMatriz(matrizA: matrizA)), escalar: 1/calcularDeterminanteMatriz(matrizA: matrizA))
+        }
         
         return matrizInversa
     }
